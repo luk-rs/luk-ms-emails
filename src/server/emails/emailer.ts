@@ -1,37 +1,21 @@
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+import Mail from "nodemailer/lib/mailer/index.js";
 
 dotenv.config({
   path: [".env.local"],
 });
 
-const user = process.env.SMTP_USER;
-const pass = process.env.SMTP_PASS;
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
-const transporter = () =>
-  nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: user,
-      pass: pass,
-    },
-  });
-
-async function send(
-  sender: string,
-  recipient: string,
-  subject: string,
-  body: string
-) {
-  const mailOptions = {
-    from: sender, // Sender address
-    to: recipient,
-    subject,
-    text: body, // Or HTML if using HTML content
-  };
-
-  const info = await transporter().sendMail(mailOptions);
-  console.log("Email sent:", info.response);
+async function send(mailOptions: Mail.Options) {
+  return await transporter.sendMail(mailOptions);
 }
 
 export default { send };
