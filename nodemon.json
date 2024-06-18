@@ -1,0 +1,11 @@
+{
+  "verbose": true,
+  "watch": [
+    "api",
+    "kernel"
+  ],
+  "ext": "ts",
+  "execMap": {
+    "ts": "node --loader ts-node/esm"
+  }
+}

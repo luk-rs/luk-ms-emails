@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
-import Mail from "nodemailer/lib/mailer/index.js";
+import Mail from "nodemailer/lib/mailer";
 
 dotenv.config({
   path: [".env.local"],
