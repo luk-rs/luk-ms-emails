@@ -14,34 +14,26 @@ async function sendContactEmail(
   req: Request<{}, {}, SleepRequest>,
   res: Response
 ) {
-  await templater
-    .format(
-      "public/contact-template.html",
-      (error) => res.status(500).send("could not read file"),
-      {
-        "${name}": req.body.name,
-        "${email}": req.body.email,
-        "${location}": req.body.location,
-        "${words}": req.body.words.replaceAll("\n", "<br>"),
-      }
-    )
-    .then(async (html) => {
-      await emailer
-        .send({
-          from: process.env.EMAIL_CONTACT_FROM,
-          to: process.env.EMAIL_TO,
-          subject: "Contacto Inicial",
-          html: html,
-        })
-        .then((info) => {
-          console.log(info.response);
-          res.send(info.response);
-        });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send(error);
-    });
+  const html = await templater.format(
+    "public/contact-template.html",
+    (error) => res.status(500).send("could not read file"),
+    {
+      "${name}": req.body.name,
+      "${email}": req.body.email,
+      "${location}": req.body.location,
+      "${words}": req.body.words.replaceAll("\n", "<br>"),
+    }
+  );
+
+  const info = await emailer.send({
+    from: process.env.EMAIL_CONTACT_FROM,
+    to: process.env.EMAIL_TO,
+    subject: "Contacto Inicial",
+    html: html,
+  });
+
+  res.send(info.response);
+  console.log(info.response);
 }
 
 const emailRoutes: Route[] = [
