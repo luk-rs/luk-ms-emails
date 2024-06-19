@@ -4,9 +4,12 @@
   "main": "main.ts",
   "type": "module",
   "scripts": {
-    "start": "build && node dist/main.js",
-    "dev": "nodemon ./api/main.ts",
-    "build": "rm -rf .dist && tsc && cp -r public .dist/public"
+    "start": "npm run build && node dist/index.js",
+    "dev": "nodemon ./api/index.ts",
+    "build": "npm run build:clean && npm run build:compile && npm run build:ensure:public",
+    "build:clean": "rm -rf .dist",
+    "build:compile": "tsc",
+    "build:ensure:public": "cp -r public .dist/public"
   },
   "keywords": [],
   "author": "",

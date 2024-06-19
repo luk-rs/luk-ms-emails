@@ -26,7 +26,7 @@ async function sendContactEmail(
   );
 
   const info = await emailer.send({
-    from: process.env.EMAIL_CONTACT_FROM,
+    from: "Contacto Site <site@mariacolinho.pt>",
     to: process.env.EMAIL_TO,
     subject: "Contacto Inicial",
     html: html,

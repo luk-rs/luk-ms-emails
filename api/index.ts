@@ -14,11 +14,11 @@ for (const route of emailRoutes) {
   setRoute(app, route);
 }
 
-// app.post("/request-contact", sendContactEmail);
-
 app.listen(process.env.PORT, () => {
   console.log(`
-server started successfully
-running on port '${process.env.PORT}'
+    server started successfully
+    running on port '${process.env.PORT}'
 `);
 });
+
+export default app;
