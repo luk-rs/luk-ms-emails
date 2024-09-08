@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mensagem do Cliente</title>
+  <title>Detalhes da Consulta</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,7 +23,7 @@
     h1 {
       color: #007BFF;
     }
-    .customer-details, .message-details {
+    .appointment-details, .customer-details {
       margin-bottom: 20px;
     }
     .details-row {
@@ -43,36 +43,47 @@
       border-top: 1px solid #eaeaea;
       color: #555;
     }
-    pre {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>Mensagem do Cliente</h1>
+    <h1>Confirmação da Consulta</h1>
+
+    <div class="appointment-details">
+      <h2>Detalhes da Consulta</h2>
+      <div class="details-row">
+        <div class="label">Serviço:</div>
+        <div class="value">${service}</div>
+      </div>
+      <div class="details-row">
+        <div class="label">Valor:</div>
+        <div class="value">€${cost}</div>
+      </div>
+      <div class="details-row">
+        <div class="label">Duração:</div>
+        <div class="value">${duration} minutes</div>
+      </div>
+    </div>
 
     <div class="customer-details">
       <h2>Detalhes do Cliente</h2>
       <div class="details-row">
-        <div class="label">Nome:</div>
+        <div class="label">Name:</div>
         <div class="value">${name}</div>
+      </div>
+      <div class="details-row">
+        <div class="label">Data & Hora:</div>
+        <div class="value">${date}</div>
       </div>
       <div class="details-row">
         <div class="label">Email:</div>
         <div class="value">${email}</div>
       </div>
       <div class="details-row">
-        <div class="label">Localização:</div>
-        <div class="value">${location}</div>
+        <div class="label">WhatsApp:</div>
+        <div class="value">${whatsapp}</div>
       </div>
-    </div>
-
-    <div class="message-details">
-      <h2>Mensagem:</h2>
-      <pre>${words}</pre>
     </div>
   </div>
 

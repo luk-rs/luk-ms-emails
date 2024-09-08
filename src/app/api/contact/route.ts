@@ -7,15 +7,15 @@ type ContactBody = {
   words: string
 }
 
-const POST = async (req: Request) => {
+const POST = async (req: Request): Promise<Response> => {
   try {
 
-    const body = await req.json() as ContactBody;
+    const body = await req.json() as ContactBody
 
     const info = await sendTemplate({
       from: `${body.name} <${body.email}>`,
       to: process.env.EMAIL_TO!,
-      subject: 'Contacto Site',
+      subject: 'Contacto pelo site',
       template: 'contact',
       replacements: {
         "${name}": body.name,
